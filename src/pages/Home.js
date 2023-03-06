@@ -3,6 +3,8 @@ import Show from "../components/Show";
 import { getCurrentData } from "../services/Api";
 import { useState, useEffect } from "react";
 import { Container } from "@mui/system";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const [currentData, setCurrentData] = useState();
@@ -22,8 +24,8 @@ const Home = () => {
 
   const searcher = (e) => {
     e.preventDefault();
-    if (currentData?.name.toLowerCase().includes(city)) {
-      alert("already searched for this city");
+    if (currentData?.name.toLowerCase().includes(city.toLowerCase())) {
+      notify();
 
       return;
     }
@@ -32,13 +34,29 @@ const Home = () => {
     setCityName(city);
     setCity("");
   };
-
+  const notify = () => {
+    toast.error("You're already seeing this city!!!");
+  };
   return (
-    <Container align="center">
-      <Search searcher={searcher} setCity={setCity} city={city} />
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      ></ToastContainer>
+      <Container align="center">
+        <Search searcher={searcher} setCity={setCity} city={city} />
 
-      <Show currentData={currentData} />
-    </Container>
+        <Show currentData={currentData} />
+      </Container>
+    </>
   );
 };
 export default Home;
