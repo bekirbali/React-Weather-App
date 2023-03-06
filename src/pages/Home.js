@@ -3,7 +3,6 @@ import Show from "../components/Show";
 import { getCurrentData } from "../services/Api";
 import { useState, useEffect } from "react";
 import { Container } from "@mui/system";
-import { Typography } from "@mui/material";
 
 const Home = () => {
   const [currentData, setCurrentData] = useState();

@@ -14,7 +14,6 @@ const Show = ({ currentData }) => {
               )}@2x.png`}
               alt=""
             />
-            <li>Humidity: {currentData?.main?.humidity}%</li>
             <li>
               {currentData?.weather?.map((item) => {
                 const details = item.description.split(" ");
@@ -26,8 +25,8 @@ const Show = ({ currentData }) => {
                 return capitalize;
               })}
             </li>
-
             <li>Temperature: {currentData?.main?.temp} ℃</li>
+            <li>Humidity: {currentData?.main?.humidity}%</li>
             <li>Wind: {currentData?.wind?.speed} km/h</li>
           </ul>
         </div>
